@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mattabbor Islamic Insurance</title>
+    <link rel="stylesheet" href="style.css">
+    <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
+</head>
+<body>
+    <div class="container">
+         <!-- notification bell -->
+  <div class="notification" onclick="toggleDropdown()">
+    <span class="bell">🔔</span>
+    <span class="badge" id="badge"></span>
+    
+        <header>
+            <div class="header-content">
+                <div class="bank-logo">
+                    <img src="image/logo1.jpg"alt="">
+                </div>
+                <div class="title-box">Mattabbor Islamic Insurance</div>
+            </div>
+            
+        </header>
+
+        <main>
+            <ul class="info-list">
+                <li>loan islamin is available here.</li>
+                <li>Loan is available here.</li>
+                <li>Insurance is available here.</li>
+            </ul>
+
+            <div class="media-gallery">
+               <img src="image/alaminkhan.jpg" alt="">
+               <img src="image/bank2.jpg" alt="">
+               <img src="image/bank.jpg" alt="">
+               <img src="image/bank1.jpg" alt="">
+               <img src="image/bank5.png" alt="">
+               <img src="image/bank4.png" alt="">
+               <img src="image/bank4.jpg" alt="">
+               <img src="image/bank6.jpg" alt="">
+            </div>
+
+            <section class="apply-section">
+                <h2>Apply for a Loan</h2>
+                <div class="apply-button-wrapper">
+                    <img src="image/alaminkhan.jpg" alt="">
+                    <span id="karaya-btn-label">We offer both Islamic and regular loans to suit your needs.</span>
+                   <button id="karaya-btn" class="apply-btn">Apply</button>
+                    <span id="karaya-btn-label">Loan (Islamic)</span>
+                </div>
+                <div class="apply-button-wrapper">
+                    <img src="image/bank2.jpg" alt="">
+                    <span id="loan-btn-label">We offer both Islamic and regular loans to suit your needs.</span>
+                    <button id="loan-btn" class="apply-btn">Apply</button>
+                    <span>Loan (Regular)</span>
+                </div>
+                <div class="apply-button-wrapper">
+                    <img src="image/bank.jpg" alt="">
+                    <span id="insurance-btn-label">Secure your future with our comprehensive insurance plans.</span>
+                    <button id="insurance-btn" class="apply-btn">Apply</button>
+                    <span>Insurance</span>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <div id="karaya-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="form-container">
+                <h2>Islamic Loan Application</h2>
+                <form>
+                    <div class="form-group"><label for="kh-name">Your name:</label><input type="text" id="kh-name" placeholder="Full name of the applicant" required></div>
+                    <div class="form-group"><label for="kh-father">Your father's name:</label><input type="text" id="kh-father" placeholder="Father's full name" required></div>
+                    <div class="form-group"><label for="kh-mother">Your mother's name:</label><input type="text" id="kh-mother" placeholder="Mother's full name" required></div>
+                    <div class="form-group"><label for="kh-phone">Your phone number:</label><input type="tel" id="kh-phone" placeholder="Contact phone number" required></div>
+                    <div class="form-group"><label for="kh-nid">Your NID number:</label><input type="text" id="kh-nid" placeholder="National ID number" required></div>
+                    <div class="form-group"><label for="kh-hostage-name">Your guarantor's name:</label><input type="text" id="kh-hostage-name" placeholder="Name of the guarantor" required></div>
+                    <div class="form-group"><label for="kh-hostage-nid">Your guarantor's NID number:</label><input type="text" id="kh-hostage-nid" placeholder="NID number of the guarantor" required></div>
+                    <div class="form-group"><label for="kh-amount">How much money do you want?:</label><input type="number" id="kh-amount" placeholder="Desired amount in Taka" required></div>
+                    <div class="form-group"><label for="kh-duration">For how many months?:</label><input type="number" id="kh-duration" placeholder="Repayment duration in months" required></div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <div id="loan-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="form-container">
+                <h2>Loan Application</h2>
+                <form>
+                    <div class="form-group"><label for="loan-name">Your name:</label><input type="text" id="loan-name" placeholder="Full name of the applicant" required></div>
+                    <div class="form-group"><label for="loan-father">Your father's name:</label><input type="text" id="loan-father" placeholder="Father's full name" required></div>
+                    <div class="form-group"><label for="loan-mother">Your mother's name:</label><input type="text" id="loan-mother" placeholder="Mother's full name" required></div>
+                    <div class="form-group"><label for="loan-phone">Your phone number:</label><input type="tel" id="loan-phone" placeholder="Contact phone number" required></div>
+                    <div class="form-group"><label for="loan-nid">Your NID number:</label><input type="text" id="loan-nid" placeholder="National ID number" required></div>
+                    <div class="form-group"><label for="loan-hostage-name">Your guarantor's name:</label><input type="text" id="loan-hostage-name" placeholder="Name of the guarantor" required></div>
+                    <div class="form-group"><label for="loan-hostage-nid">Your guarantor's NID number:</label><input type="text" id="loan-hostage-nid" placeholder="NID number of the guarantor" required></div>
+                    <div class="form-group"><label for="loan-amount">How much money do you want?:</label><input type="number" id="loan-amount" placeholder="Desired loan amount" required></div>
+                    <div class="form-group"><label for="loan-duration">Loan duration:</label><input type="text" id="loan-duration" placeholder="e.g., 24 months, 5 years" required></div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div id="insurance-modal" class="modal">
+        <div class="modal-content">
+            <span class="close-btn">&times;</span>
+            <div class="form-container">
+                <h2>Insurance Application</h2>
+                <form>
+                    <div class="form-group"><label for="ins-name">Your name:</label><input type="text" id="ins-name" placeholder="Full name of the applicant" required></div>
+                    <div class="form-group"><label for="ins-father">Your father's name:</label><input type="text" id="ins-father" placeholder="Father's full name" required></div>
+                    <div class="form-group"><label for="ins-mother">Your mother's name:</label><input type="text" id="ins-mother" placeholder="Mother's full name" required></div>
+                    <div class="form-group"><label for="ins-phone">Your phone number:</label><input type="tel" id="ins-phone" placeholder="Contact phone number" required></div>
+                    <div class="form-group"><label for="ins-nid">Your NID number:</label><input type="text" id="ins-nid" placeholder="National ID number" required></div>
+                    <div class="form-group"><label for="ins-numni-name">Your Nominee's name:</label><input type="text" id="ins-numni-name" placeholder="Name of the nominee" required></div>
+                    <div class="form-group"><label for="ins-numni-nid">Your Nominee's NID number:</label><input type="text" id="ins-numni-nid" placeholder="NID number of the nominee" required></div>
+                    <div class="form-group"><label for="ins-duration">Insurance duration:</label><input type="text" id="ins-duration" placeholder="e.g., 10 years" required></div>
+                    <div class="form-group"><label for="ins-taka">Taka amount:</label><input type="number" id="ins-taka" placeholder="Amount of coverage or premium" required></div>
+                    <div class="form-group">
+                        <label>Payment frequency:</label>
+                        <div class="radio-group">
+                            <input type="radio" id="freq-years" name="frequency" value="years"><label for="freq-years">Years</label>
+                            <input type="radio" id="freq-months" name="frequency" value="months" checked><label for="freq-months">Months</label>
+                            <input type="radio" id="freq-weeks" name="frequency" value="weeks"><label for="freq-weeks">Weeks</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="submit-btn">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <section class="contact">
+        <div class="contact-form-wrapper">
+            <form action="https://formspree.io/f/mzzrween" method="POST">
+                <h2 class="heading">Contact <span>US!</span></h2>
+                <div class="field-box">
+                    <input type="text" name="name" placeholder="Full Name" required>
+                    <input type="email" name="email" placeholder="Email Address" required>
+                    <input type="tel" name="phone" placeholder="Phone Number" required>
+                    <input type="text" name="subject" placeholder="Email Subject" required>
+                    <textarea name="message" placeholder="Your Message" required></textarea>
+                </div>
+                <button type="submit" class="submit-btn">Send Message</button>
+            </form>
+        </div>
+        <div class="contact-details-wrapper">
+            <h2>Let's Work Together</h2>
+            <p class="desc">Feel free to reach out through phone, email, or by visiting our office in Gulshan.</p>
+            <div class="contact-detail">
+                <i class='bx bxs-phone'></i>
+                <div class="detail">
+                    <p>Phone</p>
+                    <p>+880 1577097715</p>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <i class='bx bxs-envelope'></i>
+                <div class="detail">
+                    <p>Email</p>
+                    <p>alamineunus@gmail.com</p>
+                </div>
+            </div>
+            <div class="contact-detail">
+                <i class='bx bxs-map'></i>
+                <div class="detail">
+                    <p>Address</p>
+                    <p>Gulshan-1, Dhaka, Bangladesh</p> 
+                </div>
+            </div>
+        </div>
+        
+    </section>
+   <div class="footer">
+  <p>&copy; 2023 Des Bot. All rights reserved.</p>
+  <p>Follow us on:</p>
+
+  <div class="social-icons">
+    <a href="https://wa.me/message/YFPGASORR3MUK1" target="_blank"><i class='bx bxl-whatsapp'></i></a>
+    <a href="I'm on Instagram as @alaminmattabbor. Install the app to follow my photos and videos. https://www.instagram.com/alaminmattabbor?igsh=YzljYTk1ODg3Zg==" target="_blank"><i class='bx bxl-instagram'></i></a>
+    <a href="https://www.facebook.com/share/1D1zuLWrYW/" target="_blank"><i class='bx bxl-facebook'></i></a>
+    <a href="https://youtube.com/@kupokatdw?si=9fac2N-r0k30OSif" target="_blank"><i class='bx bxl-youtube'></i></a>
+  </div>
+</div>
+
+    
+
+    <script src="script.js"></script>
+</body>
+</html>

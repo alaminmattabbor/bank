@@ -1,0 +1,270 @@
+{
+  "system": {
+    "name": "Mattabbor Islamic Insurance Management System",
+    "version": "1.0.0",
+    "environment": "production"
+  },
+  
+  "api": {
+    "baseUrl": "https://api.mattabbor-insurance.com",
+    "endpoints": {
+      "applications": {
+        "create": "/api/applications",
+        "list": "/api/applications",
+        "get": "/api/applications/{id}",
+        "update": "/api/applications/{id}",
+        "delete": "/api/applications/{id}",
+        "status": "/api/applications/{id}/status"
+      },
+      "notifications": {
+        "send": "/api/notifications",
+        "list": "/api/notifications",
+        "markAsRead": "/api/notifications/{id}/read"
+      },
+      "users": {
+        "profile": "/api/users/profile",
+        "applications": "/api/users/{userId}/applications"
+      },
+      "admin": {
+        "dashboard": "/api/admin/dashboard",
+        "stats": "/api/admin/statistics",
+        "export": "/api/admin/export"
+      }
+    }
+  },
+  
+  "websocket": {
+    "url": "wss://ws.mattabbor-insurance.com",
+    "reconnectInterval": 5000,
+    "heartbeatInterval": 30000
+  },
+  
+  "storage": {
+    "keys": {
+      "userId": "userId",
+      "authToken": "authToken",
+      "userApplications": "userApplications_{userId}",
+      "pendingApplications": "pendingApplications",
+      "allApplications": "allApplications",
+      "userNotifications": "userNotifications",
+      "adminSettings": "adminSettings"
+    }
+  },
+  
+  "applicationTypes": [
+    {
+      "id": "islamic-loan",
+      "name": "Islamic Loan",
+      "fields": [
+        "name", "fatherName", "motherName", "phone", "nid",
+        "guarantorName", "guarantorNid", "amount", "duration"
+      ],
+      "validation": {
+        "amount": {
+          "min": 1000,
+          "max": 10000000
+        },
+        "duration": {
+          "min": 1,
+          "max": 360,
+          "unit": "months"
+        }
+      }
+    },
+    {
+      "id": "loan",
+      "name": "Regular Loan (JL)",
+      "fields": [
+        "name", "fatherName", "motherName", "phone", "nid",
+        "guarantorName", "guarantorNid", "amount", "duration"
+      ],
+      "validation": {
+        "amount": {
+          "min": 1000,
+          "max": 10000000
+        },
+        "duration": {
+          "flexible": true
+        }
+      }
+    },
+    {
+      "id": "insurance",
+      "name": "Insurance",
+      "fields": [
+        "name", "fatherName", "motherName", "phone", "nid",
+        "nomineeName", "nomineeNid", "duration", "amount", "paymentFrequency"
+      ],
+      "validation": {
+        "paymentFrequency": ["years", "months", "weeks"],
+        "amount": {
+          "min": 500,
+          "max": 50000000
+        }
+      }
+    }
+  ],
+  
+  "statusWorkflow": {
+    "states": ["pending", "reviewing", "approved", "rejected"],
+    "transitions": {
+      "pending": ["reviewing", "approved", "rejected"],
+      "reviewing": ["approved", "rejected", "pending"],
+      "approved": [],
+      "rejected": ["pending"]
+    },
+    "colors": {
+      "pending": "#ffc107",
+      "reviewing": "#17a2b8",
+      "approved": "#28a745",
+      "rejected": "#dc3545"
+    }
+  },
+  
+  "notifications": {
+    "types": {
+      "application_submitted": {
+        "title": "New Application",
+        "template": "New {type} application from {name}"
+      },
+      "status_changed": {
+        "title": "Status Update",
+        "template": "Application {id} status changed to {status}"
+      },
+      "document_required": {
+        "title": "Document Required",
+        "template": "Please upload required documents for application {id}"
+      },
+      "application_approved": {
+        "title": "Application Approved",
+        "template": "Your {type} application has been approved"
+      },
+      "application_rejected": {
+        "title": "Application Rejected",
+        "template": "Your {type} application has been rejected"
+      }
+    }
+  },
+  
+  "permissions": {
+    "admin": {
+      "canView": ["all"],
+      "canEdit": ["all"],
+      "canDelete": ["all"],
+      "canExport": true,
+      "canChangeStatus": true
+    },
+    "user": {
+      "canView": ["own"],
+      "canEdit": ["own:pending"],
+      "canDelete": ["own:pending"],
+      "canExport": false,
+      "canChangeStatus": false
+    }
+  },
+  
+  "validation": {
+    "phone": {
+      "pattern": "^\\+?880\\s?\\d{10}$",
+      "message": "Please enter a valid Bangladesh phone number"
+    },
+    "nid": {
+      "pattern": "^\\d{10,17}$",
+      "message": "NID must be between 10-17 digits"
+    },
+    "email": {
+      "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$",
+      "message": "Please enter a valid email address"
+    }
+  },
+  
+  "security": {
+    "tokenExpiry": 3600000,
+    "refreshTokenExpiry": 604800000,
+    "maxLoginAttempts": 5,
+    "lockoutDuration": 900000,
+    "passwordPolicy": {
+      "minLength": 8,
+      "requireUppercase": true,
+      "requireLowercase": true,
+      "requireNumbers": true,
+      "requireSpecialChars": true
+    }
+  },
+  
+  "ui": {
+    "theme": {
+      "primary": "#667eea",
+      "secondary": "#764ba2",
+      "success": "#28a745",
+      "danger": "#dc3545",
+      "warning": "#ffc107",
+      "info": "#17a2b8"
+    },
+    "pagination": {
+      "defaultPageSize": 10,
+      "pageSizeOptions": [10, 25, 50, 100]
+    },
+    "dateFormat": "DD/MM/YYYY",
+    "timeFormat": "HH:mm:ss",
+    "currency": "BDT"
+  },
+  
+  "communication": {
+    "channels": {
+      "localStorage": {
+        "enabled": true,
+        "pollInterval": 5000
+      },
+      "websocket": {
+        "enabled": false,
+        "autoReconnect": true
+      },
+      "api": {
+        "enabled": true,
+        "retryAttempts": 3,
+        "retryDelay": 1000
+      }
+    }
+  },
+  
+  "dataSync": {
+    "strategy": "optimistic",
+    "conflictResolution": "server-wins",
+    "syncInterval": 10000,
+    "offlineQueue": {
+      "enabled": true,
+      "maxSize": 100,
+      "persistToStorage": true
+    }
+  },
+  
+  "monitoring": {
+    "errorReporting": {
+      "enabled": true,
+      "endpoint": "/api/errors",
+      "includeUserInfo": true
+    },
+    "analytics": {
+      "enabled": true,
+      "trackEvents": [
+        "application_submitted",
+        "application_viewed",
+        "status_changed",
+        "document_uploaded"
+      ]
+    }
+  },
+  
+  "features": {
+    "realTimeUpdates": true,
+    "offlineMode": true,
+    "documentUpload": true,
+    "emailNotifications": true,
+    "smsNotifications": false,
+    "exportToCSV": true,
+    "exportToPDF": false,
+    "multiLanguage": false,
+    "darkMode": false
+  }
+}
